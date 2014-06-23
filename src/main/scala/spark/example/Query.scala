@@ -18,11 +18,15 @@ object Query {
     sqlContext
   }
 
-  def runQuery(sqlContext: SQLContext) {
-    val sum = sqlContext.sql("SELECT name, sum(age) FROM people GROUP BY name").collect.foreach(println)
+  def runQuery(sqlContext: SQLContext, sc: SparkContext) {
+    val cmd = "SELECT name, sum(age) FROM people GROUP BY name"
+    sc.setJobDescription(cmd)
+    val sum = sqlContext.sql(cmd).collect.foreach(println)
   }
 
-  def runQuery2(sqlContext: SQLContext) {
-    val sum = sqlContext.sql("SELECT name FROM people").collect.foreach(println)
+  def runQuery2(sqlContext: SQLContext, sc: SparkContext) {
+    val cmd = "SELECT name FROM people"
+    sc.setJobDescription(cmd)
+    val sum = sqlContext.sql(cmd).collect.foreach(println)
   }
 }

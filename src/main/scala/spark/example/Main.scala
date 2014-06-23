@@ -25,12 +25,13 @@ object Main {
     sc.setLocalProperty("spark.scheduler.pool", "pool1")
 
     writer.write("Pool1, Submit time: " + System.currentTimeMillis() + "\n")
-    Query.runQuery(sqlContext)
+    Query.runQuery(sqlContext, sc)
 
+    //sc.setLocalProperty("spark.scheduler.pool", "pool2")
     sc.setLocalProperty("spark.scheduler.pool", "pool2")
 
     writer.write("Pool2, Submit time: " + System.currentTimeMillis() + "\n")
-    Query.runQuery2(sqlContext)
+    Query.runQuery2(sqlContext, sc)
     writer.close()
     System.exit(0)
   }

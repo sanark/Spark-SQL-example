@@ -10,7 +10,7 @@ class SharkRunnable(sql: SQLContext, con: SparkContext) extends Runnable{
 
   def run() {
     sc.setLocalProperty("spark.scheduler.pool", "pool1")
-    Query.runQuery(sqlContext)
+    Query.runQuery(sqlContext, sc)
   }
 }
 
@@ -20,6 +20,6 @@ class SharkRunnableTwo(sql: SQLContext, con: SparkContext) extends Runnable{
 
   def run() {
     sc.setLocalProperty("spark.scheduler.pool", "pool2")
-    Query.runQuery2(sqlContext)
+    Query.runQuery2(sqlContext, sc)
   }
 }
